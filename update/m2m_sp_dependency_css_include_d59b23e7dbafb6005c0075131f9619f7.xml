@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="m2m_sp_dependency_css_include">
+    <m2m_sp_dependency_css_include action="INSERT_OR_UPDATE">
+        <order>100</order>
+        <sp_css_include display_value="Angular UI Tree CSS">058b23e7dbafb6005c0075131f96197a</sp_css_include>
+        <sp_dependency display_value="Angular UI Tree">0bbae7a7dbafb6005c0075131f96194f</sp_dependency>
+        <sys_class_name>m2m_sp_dependency_css_include</sys_class_name>
+        <sys_created_by>ros11756_admin</sys_created_by>
+        <sys_created_on>2017-06-30 19:50:28</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>d59b23e7dbafb6005c0075131f9619f7</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Angular UI Tree CSS.Angular UI Tree</sys_name>
+        <sys_package display_value="Acquisition Console" source="x_kfna2_acqcon">ce6e3aabdb2fb6005c0075131f9619ca</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Acquisition Console">ce6e3aabdb2fb6005c0075131f9619ca</sys_scope>
+        <sys_update_name>m2m_sp_dependency_css_include_d59b23e7dbafb6005c0075131f9619f7</sys_update_name>
+        <sys_updated_by>ros11756_admin</sys_updated_by>
+        <sys_updated_on>2017-06-30 19:50:28</sys_updated_on>
+    </m2m_sp_dependency_css_include>
+</record_update>
