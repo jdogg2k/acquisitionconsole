@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update table="sp_widget">
     <sp_widget action="INSERT_OR_UPDATE">
-        <client_script><![CDATA[function($scope, $http, $interval, $filter, uiGridTreeViewConstants) {
+        <client_script><![CDATA[function($scope, $http, $interval, $filter, uiGridTreeViewConstants, spModal) {
   /* widget controller */
   var c = this;
 	
@@ -11,7 +11,7 @@
 	
 	$scope.gridOptions = {
 		enableColumnResizing: true,
-		enableCellEditOnFocus: true,
+		enableCellEditOnFocus: true, 
 		enableSorting: false,
     enableFiltering: true,
     showTreeExpandNoChildren: false,
@@ -20,41 +20,40 @@
     multiSelect: false,
     noUnselect: true,
     modifierKeysToMultiSelect: false,
+		
+		//todo - set cellEditableCondition for uneditable columns on parent tasks
     columnDefs: [
-      { name: 'title', displayName: 'Task Name', enableCellEdit: true},
-			{ name: 'pStart', displayName: 'Planned Start'},
-			{ name: 'pEnd', displayName: 'Planned End'},
+			{ name: ' ', enableCellEdit: false, enablefiltering:false, enablesorting:false, cellTemplate: "<div class='grid-action-cell'><button ng-click='grid.appScope.openModal(row.entity.id)'><span class='glyphicon glyphicon-pencil'></span></button></div>"},
+      { name: 'short_description', displayName: 'Task Name', enableCellEdit: true, cellTooltip: true},
+			{ name: 'start_date', displayName: 'Planned Start'},
+			{ name: 'end_date', displayName: 'Planned End'},
 			{ name: 'duration', displayName: 'Duration'},
-			{ name: 'aStart', displayName: 'Actual Start'},
-			{ name: 'aEnd', displayName: 'Actual End'},
+			{ name: 'work_start', displayName: 'Actual Start'},
+			{ name: 'work_end', displayName: 'Actual End'},
 			{ name: 'state', displayName: 'State', editableCellTemplate: 'ui-grid/dropdownEditor',  
 				 editDropdownOptionsArray: [
-				{ id: 'Pending', value: 'Pending' }, 
-				{ id: 'Open', value: 'Open' },
-				{ id: 'Work in Progress' , value: 'Work in Progress' }, 
-				{ id: 'Closed Complete', value: 'Closed Complete' }, 
-				{ id: 'Closed Incomplete', value: 'Closed Incomplete' }, 
-				{ id: 'Closed Skipped', value: 'Closed Skipped' }
+				{ id: -5, value: 'Pending'},
+				{ id: 1, value: 'Open' },
+				{ id: 2, value: 'Work in Progress' }, 
+				{ id: 3, value: 'Closed Complete' }, 
+				{ id: 4, value: 'Closed Incomplete' }, 
+				{ id: 7, value: 'Closed Skipped' }
 				] },
-			{ name: 'percentcomp', displayName: '% Complete'}
+			{ name: 'percent_complete', displayName: '% Complete'}
 		],
     onRegisterApi: function( gridApi ) {
        //set gridApi on scope
           $scope.gridApi = gridApi;
 					gridApi.edit.on.afterCellEdit($scope,function(rowEntity, colDef, newValue, oldValue){
             $scope.msg.lastCellEdited = 'edited row id:' + rowEntity.id + ' Column:' + colDef.name + ' newValue:' + newValue + ' oldValue:' + oldValue ;
-            
-						if (colDef.name == "state") {
-							//save value for record - only saving for state now, need to save other columns
-							c.data.sys_id = rowEntity.id;
-							c.data.state = newValue;
-							c.server.update().then(function(){
-								$scope.msg.lastCellEdited = "STATE VALUE UPDATED";
-							})
-							
-							//todo - save all values inline.  Look into popup modal and saving that way
-							
-						}
+						
+						c.data.sys_id = rowEntity.id;
+						c.data[colDef.name] = newValue;
+						c.data.updatedVal = colDef.name;
+						
+						c.server.update().then(function(){
+							$scope.msg.lastCellEdited = colDef.name + " VALUE UPDATED";
+						});
 						
 						$scope.$apply();
           });
@@ -62,7 +61,7 @@
     }
   };
 	
-   $scope.gridOptions.data = $scope.data.tasks;
+  $scope.gridOptions.data = $scope.data.tasks;
 
 	
 	$scope.expandAll = function(){
@@ -72,8 +71,22 @@
   $scope.collapseAll = function(){
     $scope.gridApi.treeBase.collapseAllRows();
   };
+		
+	$scope.openModal = function(sysID) {
+		//todo - when passing -1 as sysid for a new task, figure out
+		//why the modal shows Record Not Found
+		instance = spModal.open({
+			title: 'Edit Task',
+			widget: 'widget-form',
+			widgetInput: {table: 'pm_project_task', sys_id:sysID}
+		}).then(function(){
+			console.log('widget dismissed');
+		})		
+	};
 	
-}]]></client_script>
+}
+
+]]></client_script>
         <controller_as>c</controller_as>
         <css>
 
@@ -1008,19 +1021,20 @@ function loadTaskData(data, taskRecord) {
 	 
 	var pTask = {};
 	pTask.id = taskRecord.getValue('sys_id');
-	pTask.title = taskRecord.getDisplayValue('short_description');
+	pTask.short_description = taskRecord.getDisplayValue('short_description');
 	pTask.$$treeLevel = levelNum;  //level set from WBS
 	
-	pTask.pStart = taskRecord.getValue('start_date');
-	pTask.pEnd = taskRecord.getValue('end_date');
+	pTask.start_date = taskRecord.getValue('start_date');
+	pTask.end_date = taskRecord.getValue('end_date');
 	pTask.duration = taskRecord.getDisplayValue('duration');
-	pTask.aStart = taskRecord.getValue('work_start');
-	pTask.aEnd = taskRecord.getValue('work_end');
+	pTask.work_start = taskRecord.getValue('work_start');
+	pTask.work_end = taskRecord.getValue('work_end');
 	pTask.state = taskRecord.getDisplayValue('state');
-	pTask.percentcomp = taskRecord.getValue('percent_complete');
+	pTask.percent_complete = taskRecord.getValue('percent_complete');
 
 	data.tasks.push(pTask);
 }
+
 
 (function() {
 		
@@ -1032,25 +1046,14 @@ function loadTaskData(data, taskRecord) {
 		 updateRecord.addQuery("sys_id", input.sys_id);
     updateRecord.query();
 	
-		if (updateRecord.next()) {		
-			//make this work dynamic
-			//updateRecord.state = input.state
-			updateRecord.state = "-5"; //hard-coded for now.  We need to uncomment above and map state names to state values.
-			
-			//todo - either a switch or case or DB lookup to turn state text into value
-			/*{ id: -5, value: 'Pending'},
-			{ id: 1, value: 'Open' },
-				{ id: 2, value: 'Work in Progress' }, 
-				{ id: 3, value: 'Closed Complete' }, 
-				{ id: 4, value: 'Closed Incomplete' }, 
-				{ id: 7, value: 'Closed Skipped' } */
-			
+		if (updateRecord.next()) {					
+			updateRecord.setValue(input.updatedVal, input[input.updatedVal]);
 			updateRecord.update();
 		}
   }
 	
 	data.tasks = [];
-	
+
 	data.sp_page = $sp.getDisplayValue('sp_page'); // gets the page's ID
 	
 	var gr = new GlideRecordSecure('pm_project_task'); 
@@ -1073,18 +1076,19 @@ function loadTaskData(data, taskRecord) {
         <sys_created_on>2017-07-07 11:54:01</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
         <sys_id>eea1ce3ddbbbfa005c0075131f961991</sys_id>
-        <sys_mod_count>50</sys_mod_count>
+        <sys_mod_count>144</sys_mod_count>
         <sys_name>Console Grid</sys_name>
         <sys_package display_value="Acquisition Console" source="x_kfna2_acqcon">ce6e3aabdb2fb6005c0075131f9619ca</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Acquisition Console">ce6e3aabdb2fb6005c0075131f9619ca</sys_scope>
         <sys_update_name>sp_widget_eea1ce3ddbbbfa005c0075131f961991</sys_update_name>
-        <sys_updated_by>ros11756_admin</sys_updated_by>
-        <sys_updated_on>2017-07-07 21:17:53</sys_updated_on>
+        <sys_updated_by>Lex12855</sys_updated_by>
+        <sys_updated_on>2017-07-11 19:02:01</sys_updated_on>
         <template><![CDATA[<div ng-controller="MainCtrl">
       <button id="expandAll" type="button" class="btn btn-success" ng-click="expandAll()">Expand All</button>
       <button id="collapseAll" type="button" class="btn btn-success" ng-click="collapseAll()">Collapse All</button>
+  		<button id="addTask" type="button" class="btn btn-success" ng-click="openModal('-1')">Add a Task</button>
       <div id="grid1" ui-grid="gridOptions" ui-grid-edit ui-grid-cellnav ui-grid-tree-view class="grid"></div>
 <br>
       <strong>Last Cell Edited:</strong> {{msg.lastCellEdited}}    
