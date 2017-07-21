@@ -485,14 +485,14 @@
         <sys_class_name>sp_angular_provider</sys_class_name>
         <sys_created_by>ros11756_admin</sys_created_by>
         <sys_created_on>2017-06-30 18:40:14</sys_created_on>
-        <sys_customer_update>true</sys_customer_update>
+        <sys_customer_update>false</sys_customer_update>
         <sys_id>274b5f2fdb6fb6005c0075131f96196d</sys_id>
         <sys_mod_count>3</sys_mod_count>
         <sys_name>abnTree</sys_name>
-        <sys_package display_value="Acquisition Console" source="x_kfna2_acqcon">ce6e3aabdb2fb6005c0075131f9619ca</sys_package>
+        <sys_package display_value="Integration Console" source="x_kfna2_acqcon">ce6e3aabdb2fb6005c0075131f9619ca</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
-        <sys_scope display_value="Acquisition Console">ce6e3aabdb2fb6005c0075131f9619ca</sys_scope>
+        <sys_scope display_value="Integration Console">ce6e3aabdb2fb6005c0075131f9619ca</sys_scope>
         <sys_update_name>sp_angular_provider_274b5f2fdb6fb6005c0075131f96196d</sys_update_name>
         <sys_updated_by>ros11756_admin</sys_updated_by>
         <sys_updated_on>2017-06-30 18:44:41</sys_updated_on>

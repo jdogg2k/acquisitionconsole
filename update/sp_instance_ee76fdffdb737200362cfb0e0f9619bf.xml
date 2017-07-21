@@ -10,22 +10,22 @@
         <order>1</order>
         <short_description/>
         <size>md</size>
-        <sp_column display_value="1">7c3dd27edbff7e005c0075131f9619aa</sp_column>
-        <sp_widget/>
+        <sp_column display_value="1">a276fdffdb737200362cfb0e0f9619bd</sp_column>
+        <sp_widget display_value="Kelly ConsoleGrid">de767dbfdb737200362cfb0e0f961911</sp_widget>
         <sys_class_name>sp_instance</sys_class_name>
         <sys_created_by>Lex12855</sys_created_by>
-        <sys_created_on>2017-07-10 16:28:16</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
-        <sys_id>b83dd27edbff7e005c0075131f9619ad</sys_id>
+        <sys_created_on>2017-07-13 16:13:00</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>ee76fdffdb737200362cfb0e0f9619bf</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name/>
         <sys_package display_value="Integration Console" source="x_kfna2_acqcon">ce6e3aabdb2fb6005c0075131f9619ca</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Integration Console">ce6e3aabdb2fb6005c0075131f9619ca</sys_scope>
-        <sys_update_name>sp_instance_b83dd27edbff7e005c0075131f9619ad</sys_update_name>
+        <sys_update_name>sp_instance_ee76fdffdb737200362cfb0e0f9619bf</sys_update_name>
         <sys_updated_by>Lex12855</sys_updated_by>
-        <sys_updated_on>2017-07-10 16:28:16</sys_updated_on>
+        <sys_updated_on>2017-07-13 16:13:00</sys_updated_on>
         <title/>
         <url/>
         <widget_parameters/>

@@ -1000,10 +1000,10 @@ input[type="text"].ui-grid-filter-input:hover {
         <docs/>
         <field_list/>
         <has_preview>false</has_preview>
-        <id>console_grid</id>
+        <id>kelly_console_grid</id>
         <internal>false</internal>
         <link/>
-        <name>Console Grid</name>
+        <name>Kelly ConsoleGrid</name>
         <option_schema>[{"hint":"Encoded Query Filter","name":"filter","label":"Filter","type":"string"}]</option_schema>
         <public>false</public>
         <roles/>
@@ -1072,19 +1072,19 @@ function loadTaskData(data, taskRecord) {
 ]]></script>
         <servicenow>false</servicenow>
         <sys_class_name>sp_widget</sys_class_name>
-        <sys_created_by>ros11756_admin</sys_created_by>
-        <sys_created_on>2017-07-07 11:54:01</sys_created_on>
+        <sys_created_by>Lex12855</sys_created_by>
+        <sys_created_on>2017-07-13 16:12:59</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
-        <sys_id>eea1ce3ddbbbfa005c0075131f961991</sys_id>
-        <sys_mod_count>146</sys_mod_count>
-        <sys_name>Console Grid</sys_name>
+        <sys_id>de767dbfdb737200362cfb0e0f961911</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Kelly ConsoleGrid</sys_name>
         <sys_package display_value="Integration Console" source="x_kfna2_acqcon">ce6e3aabdb2fb6005c0075131f9619ca</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Integration Console">ce6e3aabdb2fb6005c0075131f9619ca</sys_scope>
-        <sys_update_name>sp_widget_eea1ce3ddbbbfa005c0075131f961991</sys_update_name>
-        <sys_updated_by>ros11756_admin</sys_updated_by>
-        <sys_updated_on>2017-07-12 18:18:26</sys_updated_on>
+        <sys_update_name>sp_widget_de767dbfdb737200362cfb0e0f961911</sys_update_name>
+        <sys_updated_by>Lex12855</sys_updated_by>
+        <sys_updated_on>2017-07-13 16:12:59</sys_updated_on>
         <template><![CDATA[<div ng-controller="MainCtrl">
       <button id="expandAll" type="button" class="btn btn-success" ng-click="expandAll()">Expand All</button>
       <button id="collapseAll" type="button" class="btn btn-success" ng-click="collapseAll()">Collapse All</button>

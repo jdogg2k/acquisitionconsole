@@ -5,18 +5,18 @@
         <sp_css_include display_value="UI Grid Style Sheet">88f50a31dbfbfa005c0075131f961953</sp_css_include>
         <sp_dependency display_value="Angular UI Grid">33b5c6fddbbbfa005c0075131f9619a9</sp_dependency>
         <sys_class_name>m2m_sp_dependency_css_include</sys_class_name>
-        <sys_created_by>ros11756_admin</sys_created_by>
-        <sys_created_on>2017-07-07 12:13:28</sys_created_on>
+        <sys_created_by>wai12780</sys_created_by>
+        <sys_created_on>2017-07-20 13:46:16</sys_created_on>
         <sys_customer_update>true</sys_customer_update>
-        <sys_id>47168631dbfbfa005c0075131f96194b</sys_id>
+        <sys_id>d908d186db0847005c0075131f961954</sys_id>
         <sys_mod_count>0</sys_mod_count>
         <sys_name>UI Grid Style Sheet.Angular UI Grid</sys_name>
-        <sys_package display_value="Acquisition Console" source="x_kfna2_acqcon">ce6e3aabdb2fb6005c0075131f9619ca</sys_package>
+        <sys_package display_value="Integration Console" source="x_kfna2_acqcon">ce6e3aabdb2fb6005c0075131f9619ca</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
-        <sys_scope display_value="Acquisition Console">ce6e3aabdb2fb6005c0075131f9619ca</sys_scope>
-        <sys_update_name>m2m_sp_dependency_css_include_47168631dbfbfa005c0075131f96194b</sys_update_name>
-        <sys_updated_by>ros11756_admin</sys_updated_by>
-        <sys_updated_on>2017-07-07 12:13:28</sys_updated_on>
+        <sys_scope display_value="Integration Console">ce6e3aabdb2fb6005c0075131f9619ca</sys_scope>
+        <sys_update_name>m2m_sp_dependency_css_include_d908d186db0847005c0075131f961954</sys_update_name>
+        <sys_updated_by>wai12780</sys_updated_by>
+        <sys_updated_on>2017-07-20 13:46:16</sys_updated_on>
     </m2m_sp_dependency_css_include>
 </record_update>

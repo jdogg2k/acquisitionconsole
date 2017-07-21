@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <record_update table="m2m_sp_widget_dependency">
     <m2m_sp_widget_dependency action="INSERT_OR_UPDATE">
-        <sp_dependency display_value="Spectrum Color Picker">726427700b111200b0b02c6317673a6e</sp_dependency>
-        <sp_widget display_value="Form Modal">6e218b83dbbbbe005c0075131f961974</sp_widget>
+        <sp_dependency display_value="Angular UI Grid">33b5c6fddbbbfa005c0075131f9619a9</sp_dependency>
+        <sp_widget display_value="Kelly ConsoleGrid">de767dbfdb737200362cfb0e0f961911</sp_widget>
         <sys_class_name>m2m_sp_widget_dependency</sys_class_name>
         <sys_created_by>Lex12855</sys_created_by>
-        <sys_created_on>2017-07-11 13:43:53</sys_created_on>
-        <sys_customer_update>false</sys_customer_update>
-        <sys_id>66218f83dbbbbe005c0075131f96195c</sys_id>
+        <sys_created_on>2017-07-13 16:12:59</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>2a767dbfdb737200362cfb0e0f961915</sys_id>
         <sys_mod_count>0</sys_mod_count>
-        <sys_name>Spectrum Color Picker.Copy of Form</sys_name>
+        <sys_name>Angular UI Grid.Kelly ConsoleGrid</sys_name>
         <sys_package display_value="Integration Console" source="x_kfna2_acqcon">ce6e3aabdb2fb6005c0075131f9619ca</sys_package>
         <sys_policy/>
         <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
         <sys_scope display_value="Integration Console">ce6e3aabdb2fb6005c0075131f9619ca</sys_scope>
-        <sys_update_name>m2m_sp_widget_dependency_66218f83dbbbbe005c0075131f96195c</sys_update_name>
+        <sys_update_name>m2m_sp_widget_dependency_2a767dbfdb737200362cfb0e0f961915</sys_update_name>
         <sys_updated_by>Lex12855</sys_updated_by>
-        <sys_updated_on>2017-07-11 13:43:53</sys_updated_on>
+        <sys_updated_on>2017-07-13 16:12:59</sys_updated_on>
     </m2m_sp_widget_dependency>
 </record_update>
