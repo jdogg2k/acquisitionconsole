@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_script">
+    <sys_ui_script action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <description/>
+        <global>false</global>
+        <name>x_kfna2_acqcon.ScopedSessionManager</name>
+        <script><![CDATA[var x_kfna2_acqcon = x_kfna2_acqcon || {};
+
+x_kfna2_acqcon.ScopedSessionManager = (function() {
+	"use strict";
+	
+	var sessionManager = "sessionManager",
+        defaults = {
+            pollinterval: 60, // seconds that pass between session inactivity checks
+            sessiontimeout: 5, // minutes before session times out from inactivity
+            warninginterval: 1, // minutes of inactivity that pass before a timeout warning is issued
+            timeoutmessage: '<span class="sessionManager-title">Warning!</span> You will be logged out due to inactivity in <span class="sessionManager-countdown">{0} minute(s) {1} second(s)</span>. Click <a href="#" class="sessionManager-keepAlive">here</a> to continue using the application.',
+			showWarning: function() { console.log('show timeout warning'); },
+            keepAlive: function() { console.log('session keepalive'); }, // AJAX callback to keep the session alive
+            logOut: function() { console.log('session expired'); } // logout function when the session times out from inactivity
+        };
+
+	function SessionManager(options) {
+		this.options = $.extend({}, defaults, options);
+		this._defaults = defaults;
+		this._name = sessionManager;
+		this.init();
+	}
+		
+	SessionManager.prototype = {
+		init: function () {
+			this.lastActivity = new Date();
+			this._startPolling();
+		},
+
+		_destroy: function () {
+			this._stopPolling();
+			$.sessionManager.prototype.destroy.call(this);
+		},
+
+		_startPolling: function () {
+			this.sessionIntervalId = setInterval(
+				$.proxy(function () { return this._pollSession(); }, this),
+				this.options.pollinterval * 1000);
+		},
+
+		_pollSession: function() {
+			var now = new Date(),
+				secondsSinceLastActivity = (now - this.lastActivity) / 1000,
+				minutesSinceLastActivity = secondsSinceLastActivity / 60;
+
+			if (minutesSinceLastActivity >= this.options.sessiontimeout) {
+				this._stopCountDown();
+				this.options.logOut();
+			}
+			else if (minutesSinceLastActivity >= this.options.warninginterval) {
+				var timeRemaining = (this.options.sessiontimeout * 60) - secondsSinceLastActivity,
+					minutesRemaining = Math.floor(timeRemaining / 60),
+					secondsRemaining = Math.floor(timeRemaining % 60),
+					timeoutMsg = this.options.timeoutmessage.replace('{0}', minutesRemaining).replace('{1}', secondsRemaining);
+
+				this.options.showWarning();
+
+				/*$('#sessionMessage .modal-body').html(timeoutMsg);
+                if ($('#sessionMessage').is(':hidden')) {
+                    $('#sessionMessage').modal('show');
+                    this.countDownIntervalId = setInterval(
+                        $.proxy(function() { return this._updateCountDown(); }, this),
+                        1000);
+                }*/
+			} else {
+				this.options.keepAlive();
+			}
+		},
+
+		_stopPolling: function () {
+			clearInterval(this.sessionIntervalId);
+		},
+
+		_keepAlive: function () {
+			this._stopCountDown();
+			this.lastActivity = new Date();
+			this.options.keepAlive();
+			/*if ($('#sessionMessage').is(':visible')) {
+                $('#sessionMessage').modal('hide');
+            }*/
+		},
+
+		_updateCountDown: function () {
+			var secondsSinceLastActivity = (new Date() - this.lastActivity) / 1000,
+				timeRemaining = (this.options.sessiontimeout * 60) - secondsSinceLastActivity,
+				minutesRemaining = timeRemaining < 0 ? 0 : Math.floor(timeRemaining / 60),
+				secondsRemaining = Math.floor(timeRemaining % 60),
+				timeoutMsg = this.options.timeoutmessage.replace('{0}', minutesRemaining).replace('{1}', secondsRemaining);
+
+			//$('#sessionMessage .modal-body').html(timeoutMsg);
+
+			if (minutesRemaining <= 0 && secondsRemaining <= 0) {
+				this._pollSession();
+			}
+		},
+
+		_stopCountDown: function() {
+			clearInterval(this.countDownIntervalId);
+		}
+	};
+
+	return {
+		type:  "ScopedSessionManager"
+	};
+})();
+]]></script>
+        <script_name>ScopedSessionManager</script_name>
+        <sys_class_name>sys_ui_script</sys_class_name>
+        <sys_created_by>norawainwright_admin</sys_created_by>
+        <sys_created_on>2017-07-28 17:32:31</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>a087dbe0db9c8b005c0075131f9619ad</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>x_kfna2_acqcon.ScopedSessionManager</sys_name>
+        <sys_package display_value="Integration Console" source="x_kfna2_acqcon">ce6e3aabdb2fb6005c0075131f9619ca</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Integration Console">ce6e3aabdb2fb6005c0075131f9619ca</sys_scope>
+        <sys_update_name>sys_ui_script_a087dbe0db9c8b005c0075131f9619ad</sys_update_name>
+        <sys_updated_by>norawainwright_admin</sys_updated_by>
+        <sys_updated_on>2017-07-28 17:32:31</sys_updated_on>
+        <use_scoped_format>true</use_scoped_format>
+    </sys_ui_script>
+</record_update>
