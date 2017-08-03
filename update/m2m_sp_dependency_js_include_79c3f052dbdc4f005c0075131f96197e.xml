@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="m2m_sp_dependency_js_include">
+    <m2m_sp_dependency_js_include action="INSERT_OR_UPDATE">
+        <order>250</order>
+        <sp_dependency display_value="Angular UI Grid">33b5c6fddbbbfa005c0075131f9619a9</sp_dependency>
+        <sp_js_include display_value="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js">30b33816dbdc4f005c0075131f96190b</sp_js_include>
+        <sys_class_name>m2m_sp_dependency_js_include</sys_class_name>
+        <sys_created_by>ros11756_admin</sys_created_by>
+        <sys_created_on>2017-08-02 16:02:06</sys_created_on>
+        <sys_customer_update>true</sys_customer_update>
+        <sys_id>79c3f052dbdc4f005c0075131f96197e</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>Angular UI Grid.https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js</sys_name>
+        <sys_package display_value="Integration Console" source="x_kfna2_acqcon">ce6e3aabdb2fb6005c0075131f9619ca</sys_package>
+        <sys_policy/>
+        <sys_replace_on_upgrade>false</sys_replace_on_upgrade>
+        <sys_scope display_value="Integration Console">ce6e3aabdb2fb6005c0075131f9619ca</sys_scope>
+        <sys_update_name>m2m_sp_dependency_js_include_79c3f052dbdc4f005c0075131f96197e</sys_update_name>
+        <sys_updated_by>ros11756_admin</sys_updated_by>
+        <sys_updated_on>2017-08-02 16:02:12</sys_updated_on>
+    </m2m_sp_dependency_js_include>
+</record_update>
